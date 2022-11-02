@@ -1,4 +1,4 @@
-package com.dtu.security.server;
+package com.dtu.security.server.authentication;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

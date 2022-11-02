@@ -1,5 +1,7 @@
 package com.dtu.security.server;
 
+import com.dtu.security.server.authentication.Ticket;
+
 import java.io.FileNotFoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
