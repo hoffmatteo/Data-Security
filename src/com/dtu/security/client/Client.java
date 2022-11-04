@@ -15,7 +15,7 @@ public class Client {
             String name = "Compute";
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             ServerIF server = (ServerIF) registry.lookup(name);
-            Ticket ticket = server.authenticateUser("matteoh", "test3");
+            Ticket ticket = server.authenticateUser("matteoh", "test2");
 
             server.start(ticket);
 

@@ -10,14 +10,14 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Authentication {
-    private static final String file_path = "/src/com/dtu/security/server/pswd.txt";
+    private static final String file_path = "/src/com/dtu/security/server/file/pswd.txt";
 
     private static HashMap<String, Ticket> tickets = new HashMap<>();
 
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
-        for (int i = 0; i < hash.length; i++) {
-            String hex = Integer.toHexString(0xff & hash[i]);
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
             if (hex.length() == 1) {
                 hexString.append('0');
             }
