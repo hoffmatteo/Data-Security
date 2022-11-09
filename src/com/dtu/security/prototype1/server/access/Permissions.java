@@ -1,4 +1,4 @@
-package com.dtu.security.server.access;
+package com.dtu.security.prototype1.server.access;
 
 import java.util.HashMap;
 import java.util.Objects;

@@ -1,8 +1,9 @@
-package com.dtu.security.server;
+package com.dtu.security.prototype2.server;
 
-import com.dtu.security.server.access.AccessControl;
-import com.dtu.security.server.authentication.Authentication;
-import com.dtu.security.server.authentication.Ticket;
+import com.dtu.security.prototype1.server.ServerIF;
+import com.dtu.security.prototype1.server.access.AccessControl;
+import com.dtu.security.prototype1.server.authentication.Authentication;
+import com.dtu.security.prototype1.server.authentication.Ticket;
 
 import java.io.FileNotFoundException;
 import java.rmi.RemoteException;

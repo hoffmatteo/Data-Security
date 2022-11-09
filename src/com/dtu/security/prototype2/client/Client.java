@@ -1,7 +1,7 @@
-package com.dtu.security.client;
+package com.dtu.security.prototype2.client;
 
-import com.dtu.security.server.ServerIF;
-import com.dtu.security.server.authentication.Ticket;
+import com.dtu.security.prototype1.server.ServerIF;
+import com.dtu.security.prototype1.server.authentication.Ticket;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

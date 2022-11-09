@@ -1,4 +1,4 @@
-package com.dtu.security.server.authentication;
+package com.dtu.security.prototype1.server.authentication;
 
 import java.io.Serializable;
 import java.util.Objects;
