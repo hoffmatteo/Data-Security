@@ -1,5 +1,6 @@
 package com.dtu.security.server;
 
+import com.dtu.security.server.access.AccessControl;
 import com.dtu.security.server.authentication.Authentication;
 import com.dtu.security.server.authentication.Ticket;
 
@@ -11,15 +12,25 @@ import java.rmi.server.UnicastRemoteObject;
 import java.security.NoSuchAlgorithmException;
 
 public class Server implements ServerIF {
-    //TODO null check
+    private AccessControl accessControl;
 
-    public Server() {
+    public Server() throws FileNotFoundException {
         super();
+        accessControl = new AccessControl();
     }
 
     public static void main(String[] args) {
 
         try {
+            /*
+            Authentication.hashPassword("password1", "alice");
+            Authentication.hashPassword("password2", "bob");
+            Authentication.hashPassword("password3", "cecilia");
+            Authentication.hashPassword("password4", "david");
+            Authentication.hashPassword("password5", "erica");
+            Authentication.hashPassword("password6", "george");
+*/
+
             String name = "Compute";
             //create new Server object
             ServerIF engine = new Server();
@@ -49,8 +60,10 @@ public class Server implements ServerIF {
     public void topQueue(String printer, int job, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("topQueue");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.topQueue)) {
+                    System.out.println("topQueue");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -60,8 +73,10 @@ public class Server implements ServerIF {
     public void start(Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("start");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.start)) {
+                    System.out.println("start");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -73,8 +88,10 @@ public class Server implements ServerIF {
     public void stop(Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("stop");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.stop)) {
+                    System.out.println("stop");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -86,8 +103,10 @@ public class Server implements ServerIF {
     public void restart(Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("restart");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.restart)) {
+                    System.out.println("restart");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -97,8 +116,10 @@ public class Server implements ServerIF {
     public void status(String printer, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("status");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.status)) {
+                    System.out.println("status");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -108,8 +129,10 @@ public class Server implements ServerIF {
     public void readConfig(String parameter, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("readConfig");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.readConfig)) {
+                    System.out.println("readConfig");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -119,8 +142,10 @@ public class Server implements ServerIF {
     public void setConfig(String parameter, String value, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("setConfig");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.setConfig)) {
+                    System.out.println("setConfig");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -130,8 +155,10 @@ public class Server implements ServerIF {
     public void queue(String printer, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("queue");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.queue)) {
+                    System.out.println("queue");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");
@@ -141,8 +168,10 @@ public class Server implements ServerIF {
     public void print(String filename, String printer, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                System.out.println("print");
-                return;
+                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.print)) {
+                    System.out.println("print");
+                    return;
+                }
             }
         }
         System.out.println("ERROR: ticket not valid");

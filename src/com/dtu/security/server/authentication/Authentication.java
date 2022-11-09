@@ -57,6 +57,8 @@ public class Authentication {
 
         byte[] encodedhash = digest.digest(
                 (password + salt).getBytes(StandardCharsets.UTF_8));
+        //String returnString = bytesToHex(encodedhash);
+        //System.out.println(returnString);
         return bytesToHex(encodedhash);
     }
 
