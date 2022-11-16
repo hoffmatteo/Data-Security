@@ -1,7 +1,5 @@
 package com.dtu.security.prototype2.server.authentication;
 
-import com.dtu.security.prototype1.server.authentication.Ticket;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,9 +10,9 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Authentication {
-    private static final String file_path = "/src/com/dtu/security/server/file/pswd.txt";
+    private static final String file_path = "/src/com/dtu/security/prototype2/server/file/pswd.txt";
 
-    private static HashMap<String, com.dtu.security.prototype1.server.authentication.Ticket> tickets = new HashMap<>();
+    private static HashMap<String, Ticket> tickets = new HashMap<>();
 
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -28,7 +26,7 @@ public class Authentication {
         return hexString.toString();
     }
 
-    public static com.dtu.security.prototype1.server.authentication.Ticket verifyUser(String username, String password) throws NoSuchAlgorithmException, FileNotFoundException {
+    public static Ticket verifyUser(String username, String password) throws NoSuchAlgorithmException, FileNotFoundException {
         String hashedPassword = hashPassword(password, username);
 
 
@@ -64,13 +62,13 @@ public class Authentication {
         return bytesToHex(encodedhash);
     }
 
-    public static com.dtu.security.prototype1.server.authentication.Ticket createTicket(String username) {
-        com.dtu.security.prototype1.server.authentication.Ticket t = new com.dtu.security.prototype1.server.authentication.Ticket(System.currentTimeMillis(), username);
+    public static Ticket createTicket(String username) {
+        Ticket t = new Ticket(System.currentTimeMillis(), username);
         tickets.put(username, t);
         return t;
     }
 
-    public static boolean checkTicket(com.dtu.security.prototype1.server.authentication.Ticket t) {
+    public static boolean checkTicket(Ticket t) {
         if (tickets.containsKey(t.getUsername())) {
             Ticket serverTicket = tickets.get(t.getUsername());
             return serverTicket.equalTicket(t) && serverTicket.isActive();

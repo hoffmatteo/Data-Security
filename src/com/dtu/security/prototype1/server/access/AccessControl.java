@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 
 public class AccessControl {
-    private final String acl = System.getProperty("user.dir") + "/src/com/dtu/security/server/file/acl.csv";
+    private final String acl = System.getProperty("user.dir") + "/src/com/dtu/security/prototype1/server/file/acl.csv";
     private HashMap<String, Permissions> userTable = new HashMap<>();
 
     public AccessControl() throws FileNotFoundException {

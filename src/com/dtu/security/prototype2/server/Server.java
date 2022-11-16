@@ -1,9 +1,9 @@
 package com.dtu.security.prototype2.server;
 
-import com.dtu.security.prototype1.server.ServerIF;
-import com.dtu.security.prototype1.server.access.AccessControl;
-import com.dtu.security.prototype1.server.authentication.Authentication;
-import com.dtu.security.prototype1.server.authentication.Ticket;
+import com.dtu.security.prototype2.server.access.AccessControl;
+import com.dtu.security.prototype2.server.access.Operations;
+import com.dtu.security.prototype2.server.authentication.Authentication;
+import com.dtu.security.prototype2.server.authentication.Ticket;
 
 import java.io.FileNotFoundException;
 import java.rmi.RemoteException;
@@ -13,7 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.security.NoSuchAlgorithmException;
 
 public class Server implements ServerIF {
-    private AccessControl accessControl;
+    private final AccessControl accessControl;
 
     public Server() throws FileNotFoundException {
         super();
@@ -61,7 +61,7 @@ public class Server implements ServerIF {
     public void topQueue(String printer, int job, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.topQueue)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.topQueue)) {
                     System.out.println("topQueue");
                     return;
                 }
@@ -74,7 +74,7 @@ public class Server implements ServerIF {
     public void start(Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.start)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.start)) {
                     System.out.println("start");
                     return;
                 }
@@ -89,7 +89,7 @@ public class Server implements ServerIF {
     public void stop(Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.stop)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.stop)) {
                     System.out.println("stop");
                     return;
                 }
@@ -104,7 +104,7 @@ public class Server implements ServerIF {
     public void restart(Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.restart)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.restart)) {
                     System.out.println("restart");
                     return;
                 }
@@ -117,7 +117,7 @@ public class Server implements ServerIF {
     public void status(String printer, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.status)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.status)) {
                     System.out.println("status");
                     return;
                 }
@@ -130,7 +130,7 @@ public class Server implements ServerIF {
     public void readConfig(String parameter, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.readConfig)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.readConfig)) {
                     System.out.println("readConfig");
                     return;
                 }
@@ -143,7 +143,7 @@ public class Server implements ServerIF {
     public void setConfig(String parameter, String value, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.setConfig)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.setConfig)) {
                     System.out.println("setConfig");
                     return;
                 }
@@ -156,7 +156,7 @@ public class Server implements ServerIF {
     public void queue(String printer, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.queue)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.queue)) {
                     System.out.println("queue");
                     return;
                 }
@@ -169,7 +169,7 @@ public class Server implements ServerIF {
     public void print(String filename, String printer, Ticket ticket) throws RemoteException {
         if (ticket != null) {
             if (Authentication.checkTicket(ticket)) {
-                if (accessControl.checkAccess(ticket.getUsername(), AccessControl.Operations.print)) {
+                if (accessControl.checkAccess(ticket.getUsername(), Operations.print)) {
                     System.out.println("print");
                     return;
                 }
