@@ -15,12 +15,14 @@ public class Client {
             String name = "Compute";
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             ServerIF server = (ServerIF) registry.lookup(name);
-            Ticket ticket = server.authenticateUser("erica", "password5");
+
+            Ticket ticket = server.authenticateUser("ida", "password8");
 
             server.start(ticket);
             server.print("test", "test", ticket);
             server.setConfig("test", "test", ticket);
             server.queue("test", ticket);
+            server.restart(ticket);
             server.stop(ticket);
 
         } catch (Exception e) {

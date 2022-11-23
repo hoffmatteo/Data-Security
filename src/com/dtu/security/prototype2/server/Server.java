@@ -30,7 +30,10 @@ public class Server implements ServerIF {
             Authentication.hashPassword("password4", "david");
             Authentication.hashPassword("password5", "erica");
             Authentication.hashPassword("password6", "george");
+                        Authentication.hashPassword("password7", "henry");
+            Authentication.hashPassword("password8", "ida");
 */
+
 
             String name = "Compute";
             //create new Server object
