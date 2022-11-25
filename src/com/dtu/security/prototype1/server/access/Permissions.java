@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Permissions {
-    //username,print,queue,topQueue,start,stop,restart,status,readConfig,setConfig
 
     public HashMap<AccessControl.Operations, Boolean> permissionsTable = new HashMap<>();
 

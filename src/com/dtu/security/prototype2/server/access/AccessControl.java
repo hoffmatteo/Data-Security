@@ -35,7 +35,6 @@ public class AccessControl {
 
     private void readUsers() throws FileNotFoundException {
         BufferedReader reader = new BufferedReader(new FileReader(rbac));
-        //TODO ignore first line
         reader.lines().forEach(line -> {
             String[] components = line.split(",");
             if (components.length == 2) {
